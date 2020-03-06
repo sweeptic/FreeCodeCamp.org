@@ -1,0 +1,44 @@
+* {
+    box-sizing: border-box;
+}
+
+.row {
+    max-width: 1140px;
+    margin: 0 auto;
+    /* padding:20px 0; */
+}
+
+nav {
+    background-color: rgba(127, 255, 212, 0.459);
+    display: flex;
+}
+
+nav img {
+    background-color: rgba(255, 0, 0, 0.342);
+    width: 10%;
+    /* ??? kep atmeretezese */
+}
+
+nav .bar {
+    background-color: rgba(0, 0, 255, 0.26);
+    margin-left: auto;
+    flex: 0 1 50%;
+    align-self: center;
+}
+
+.bar .links {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    background-color: salmon;
+  
+}
+
+.links a {
+    background-color: red;
+}
+
+.info {
+    background-color: rgba(46, 139, 86, 0.349);
+    margin-top: 250px;
+}
