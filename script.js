@@ -670,11 +670,11 @@ $(document).ready(function () {
 
         var args = Array.prototype.slice.call(arguments);
 
-        console.log(args);
+        // console.log(args);
 
-        console.log([...arguments]);
+        // console.log([...arguments]);
 
-            return arr.filter(item => ![...arguments].slice(1).includes(item) )
+        return arr.filter(item => ![...arguments].slice(1).includes(item))
 
     }
 
@@ -683,9 +683,30 @@ $(document).ready(function () {
 
 
 
+    function whatIsInAName(collection, source) {
+        var arr = [];
+        // Only change code below this line
 
+        arr = collection.filter(x => {
 
+            let col = Object.entries(x);
+            let src = Object.entries(source);
 
+            let A = [];
+            let B = [];
 
+            col.map(x => A.push(x.join("")))
+            src.map(x => B.push(x.join("")))
+
+            return B.every(item => {
+                return A.some(inA => { return inA === item })
+            }
+            )
+        })
+        // Only change code above this line
+        return arr;
+    }
+
+    whatIsInAName([{ "a": 1, "b": 2, "c": 3 }], { "a": 1, "b": 9999, "c": 3 })
 
 });
