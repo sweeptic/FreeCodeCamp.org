@@ -683,30 +683,102 @@ $(document).ready(function () {
 
 
 
+    // function whatIsInAName(collection, source) {
+    //     var arr = [];
+    //     // Only change code below this line
+
+    //     arr = collection.filter(x => {
+
+    //         let col = Object.entries(x);
+    //         let src = Object.entries(source);
+
+    //         let A = [];
+    //         let B = [];
+
+    //         col.map(x => A.push(x.join("")))
+    //         src.map(x => B.push(x.join("")))
+
+    //         return B.every(item => {
+    //             return A.some(inA => { return inA === item })
+    //         }
+    //         )
+    //     })
+    //     // Only change code above this line
+    //     return arr;
+    // }
+
     function whatIsInAName(collection, source) {
-        var arr = [];
-        // Only change code below this line
+        // "What's in a name? that which we call a rose
+        // By any other name would smell as sweet.”
+        // -- by William Shakespeare, Romeo and Juliet
+        var srcKeys = Object.keys(source);
 
-        arr = collection.filter(x => {
 
-            let col = Object.entries(x);
-            let src = Object.entries(source);
-
-            let A = [];
-            let B = [];
-
-            col.map(x => A.push(x.join("")))
-            src.map(x => B.push(x.join("")))
-
-            return B.every(item => {
-                return A.some(inA => { return inA === item })
-            }
-            )
-        })
-        // Only change code above this line
-        return arr;
+        return collection.filter(function (obj) {
+            return srcKeys.every(function (key) {
+                return obj.hasOwnProperty(key) && obj[key] === source[key];
+            });
+        });
     }
 
-    whatIsInAName([{ "a": 1, "b": 2, "c": 3 }], { "a": 1, "b": 9999, "c": 3 })
+    whatIsInAName([{ "apple": 1 }, { "apple": 1 }, { "apple": 1, "bat": 2 }], { "apple": 1 })
+
+
+    function spinalCase(str) {
+        str = str.replace(/([a-z])([A-Z])/g, "$1 $2");
+        // console.log(str);
+        let r = str.split(/\s|_+/g).join("-").toLowerCase();
+        // console.log(r);
+        // console.log(r.join(""));
+        return str;
+    }
+    spinalCase('This Is_Spinal_Tap');
+
+
+
+
+    function translatePigLatin(str) {
+
+        const vowel = ['e', 'u', 'i', 'o', 'a'];
+
+        let str2 = str.split("");
+        let result;
+        const len = str.length-1;
+
+
+        if (vowel.some(item => str2[0] === item)) {
+           
+            str2.splice(str.length, 0, 'way');
+
+        } else {
+        
+            // str2.push( str2.shift() );       
+            str2.splice(str.length, 0, 'ay');
+            // 
+        }
+        result = str2.join("")
+        console.log(result);
+
+
+        return str;
+    }
+
+
+
+    translatePigLatin("rhythm");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 });
