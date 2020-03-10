@@ -738,45 +738,48 @@ $(document).ready(function () {
 
 
     function translatePigLatin(str) {
-
         const vowel = ['e', 'u', 'i', 'o', 'a'];
-
         let str2 = str.split("");
-        let result;
-        const len = str.length-1;
-
 
         if (vowel.some(item => str2[0] === item)) {
-           
             str2.splice(str.length, 0, 'way');
-
         } else {
-        
-            // str2.push( str2.shift() );       
+            let from = 0;
+
+            for (const item of str2) {
+                if (vowel.some(x => x === item)) break;
+                if (!(vowel.some(x => x === item))) from++;
+            }
+            str2.push(str2.splice(0, from).join(""));
             str2.splice(str.length, 0, 'ay');
-            // 
         }
-        result = str2.join("")
-        console.log(result);
-
-
-        return str;
+        return str2.join("")
     }
 
+    // translatePigLatin("paragraphs");
+
+    function translatePigLatin(str) {
+        return str
+          .replace(/^[aeiou]\w*/, "$&way")
+          .replace(/(^[^aeiou]+)(\w*)/, "$2$1ay");
+      } 
+      // test here
+      translatePigLatin("consonant");
 
 
-    translatePigLatin("rhythm");
+      function myReplace(str, before, after) {
+
+        if(before.match(/^[A-Z]/)) after = after.replace(/^[a-z]/,after.charAt(0).toUpperCase())
+      
+        return str.replace(before,after);
+      }
+      
+      myReplace("Let us get back to more Coding", "Coding", "algorithms")
 
 
 
 
-
-
-
-
-
-
-
+      
 
 
 
