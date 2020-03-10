@@ -760,26 +760,82 @@ $(document).ready(function () {
 
     function translatePigLatin(str) {
         return str
-          .replace(/^[aeiou]\w*/, "$&way")
-          .replace(/(^[^aeiou]+)(\w*)/, "$2$1ay");
-      } 
-      // test here
-      translatePigLatin("consonant");
+            .replace(/^[aeiou]\w*/, "$&way")
+            .replace(/(^[^aeiou]+)(\w*)/, "$2$1ay");
+    }
+    // test here
+    translatePigLatin("consonant");
 
 
-      function myReplace(str, before, after) {
+    function myReplace(str, before, after) {
 
-        if(before.match(/^[A-Z]/)) after = after.replace(/^[a-z]/,after.charAt(0).toUpperCase())
-      
-        return str.replace(before,after);
-      }
-      
-      myReplace("Let us get back to more Coding", "Coding", "algorithms")
+        if (before.match(/^[A-Z]/)) after = after.replace(/^[a-z]/, after.charAt(0).toUpperCase())
+
+        str = str.replace(before, after);
+        return str;
+    }
+
+    myReplace("Let us get back to more Coding", "Coding", "algorithms");
 
 
 
 
-      
+    function pairElement(str) {
+        let res = [];
+        let arr = [...str];
+        arr.map(item => {
+            let pair;
+            if (item === 'A') pair = 'T';
+            else if (item === 'T') pair = 'A';
+            else if (item === 'C') pair = 'G';
+            else if (item === 'G') pair = 'C';
+            res.push([item, pair])
+        });
+        console.log(res);
+        return res;
+    }
+    pairElement("CTCTA")
+
+
+
+    function pairElement(str) {
+        //create object for pair lookup
+        var pairs = {
+            A: "T",
+            T: "A",
+            C: "G",
+            G: "C"
+        };
+        //split string into array of characters
+        var arr = str.split("");
+        //map character to array of character and matching pair
+        return arr.map(x => [x, pairs[x]]);
+    }
+    //test here
+    pairElement("GCG");
+
+
+
+
+
+    function fearNotLetter(str) {
+
+        let ret;
+        let abc = [...'abcdefghijklmnopqrstuvwxyz']
+
+        let to = abc.findIndex(x => x === str.charAt(0));
+        let from = abc.findIndex(x => x === str.charAt(str.length - 1));
+        let red = abc.splice(to, (from - to) + 1);
+
+        red.map(item => {
+            if (![...str].find(x => x === item)) ret = item
+        });
+
+        return ret;
+    }
+
+   console.log( fearNotLetter("abcdefghijklmnopqrstuvwxyz"));
+
 
 
 
