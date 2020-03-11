@@ -834,7 +834,84 @@ $(document).ready(function () {
         return ret;
     }
 
-   console.log( fearNotLetter("abcdefghijklmnopqrstuvwxyz"));
+    //    console.log( fearNotLetter("abcdefghijklmnopqrstuvwxyz"));
+
+
+    function fearNotLetter(str) {
+        for (let i = 1; i < str.length; ++i) {
+            if (str.charCodeAt(i) - str.charCodeAt(i - 1) > 1) {
+                return String.fromCharCode(str.charCodeAt(i - 1) + 1);
+            }
+        }
+    }
+    //           ab def                      
+    //   console.log( fearNotLetter("abdef"));
+
+
+
+    function uniteUnique(...arr) {
+
+        const flatArray = [].concat(...arr);
+        // console.log(flatArray);
+
+        let container = new Set();
+        arr.map(x => { x.map(y => container.add(y)) })
+        return [...container];
+    }
+    uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]);
+
+
+
+
+
+    function convertHTML(str) {
+
+        let quotObj =
+        {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&apos;'
+        };
+
+        return [...str].map(item => {
+            return (quotObj.hasOwnProperty(item)) ? quotObj[item] : item;
+        }).join('')
+
+    }
+    convertHTML("Hamburgers < Pizza < Tacos");
+
+
+
+
+
+    function sumFibs(num) {
+
+        let ret = [1,1];
+        let retsum = 2;
+        let index = 1
+    
+
+        for (let index = 1; ; index++) {
+
+            let r = ret[index-1] + ret[index]
+            if (r > num) break;
+
+            retsum =+ r
+            ret.push( r )
+
+                     
+        }
+
+        console.log(ret);
+
+      
+        return num;
+    }
+
+    sumFibs(10);
+
 
 
 
