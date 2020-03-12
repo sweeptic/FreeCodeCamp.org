@@ -883,34 +883,59 @@ $(document).ready(function () {
     convertHTML("Hamburgers < Pizza < Tacos");
 
 
-
-
-
     function sumFibs(num) {
 
-        let ret = [1,1];
-        let retsum = 2;
-        let index = 1
-    
+        let ret111 = [1, 1];
+        let nextFib = 0;
 
-        for (let index = 1; ; index++) {
 
-            let r = ret[index-1] + ret[index]
-            if (r > num) break;
-
-            retsum =+ r
-            ret.push( r )
-
-                     
+        while ((nextFib = ret111[0] + ret111[1]) <= num) {
+            ret111.unshift(nextFib);
         }
 
-        console.log(ret);
+        // /*
+        // for (let index = 1; ; index++) {
+        //     let r = ret[index-1] + ret[index]
+        //     if (r > num) break;
+        //     retsum =+ r
+        //     ret.push( r )                  
+        // }
 
-      
-        return num;
+        return ret111.filter(x => x % 2 != 0).reduce((a, b) => a + b);
+    }
+    // console.log(sumFibs(10));
+
+
+    // 2, 3, 5, 7, 11, 13, 17, 
+    function sumPrimes(num) {
+
+    
+        let numbers_ = 0;
+
+        for (let index = 0; index <= num; index++) {
+            // console.log(index);
+            let div = 0;
+
+            for (let j = index; j >= 0; j--) {
+                if (index % j == 0) div++;
+            }
+            if (div == 2) {
+                numbers_ = Number(index) + Number(numbers_)
+    
+                // items.push({ number: index, divs: div, sumNum: numbers_ })
+
+            }
+
+        }
+
+        console.log(numbers_);
+
+        return numbers_;
+
     }
 
-    sumFibs(10);
+    sumPrimes(10);
+
 
 
 
