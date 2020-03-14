@@ -995,26 +995,82 @@
             // console.log(flat);
             return flat.some(Array.isArray) ? steamrollArray(flat) : flat;
         }
-
         steamrollArray([1, [2, 3, 4], [3, [[4]]]]);
 
 
-
-
         function binaryAgent(str) {
-
             let r = str.split(" ");
-
             let z = r.reduce((acc, item) => {
                 acc.push(String.fromCharCode(parseInt(item, 2)))
-
                 return acc;
             }, [])
-
             return z.join("");
         }
-
         binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111");
+
+
+        function truthCheck(collection, pre) {
+            /*
+                        for (const key in collection) {
+                            if (collection.hasOwnProperty(key)) {
+                                if(!Boolean(collection[key][pre])) return false;                         
+                            }
+                        }
+                        return true;*/
+            return collection.every(obj => obj[pre])
+        }
+        truthCheck([{ "user": "Tinky-Winky", "sex": "male", "age": 0 }, { "user": "Dipsy", "sex": "male", "age": 3 }, { "user": "Laa-Laa", "sex": "female", "age": 5 }, { "user": "Po", "sex": "female", "age": 4 }], "age")
+
+
+
+        function addTogether() {
+
+            let arg = [...arguments];
+
+            if (typeof arg[0] === 'number' && typeof arg[1] === 'number') {
+                return arg[0] + arg[1]
+            }
+
+            if (typeof arg[0] === 'number' && arg.length === 1) {
+
+                let x_ = arg[0];
+
+                return function () {
+                    let arg_y = [...arguments];
+
+                    if (typeof arg_y[0] === 'number') {
+                        return x_ + arg_y[0]
+                    } else return undefined;
+                }
+            }
+            else return undefined;
+        }
+
+
+
+        function addTogether(first, second) {
+            if (typeof first !== "number") {
+                return undefined;
+            }
+            const sum = second =>
+                typeof second === "number" ? first + second : undefined;
+            return typeof second === "undefined" ? second => sum(second) : sum(second);
+        }
+
+
+                        //console.log(addTogether(2)([3]));                  //number undefined  
+        //console.log(addTogether(2)(3));                   //number undefined
+                        //console.log(addTogether(2, "3"));                    //number string
+                        //console.log(addTogether("http://bit.ly/IqT6zt"));      //string undefined
+
+                        //console.log(addTogether(2, 3));
+
+
+        /*
+        var funcCurry = addTogether(2)
+        console.log(funcCurry(3));
+*/
+
 
 
 
