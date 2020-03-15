@@ -11,7 +11,7 @@
 
 <body>
 
-    FreeCodeCamp
+    Freecodecamp
 
 
     <script>
@@ -1058,18 +1058,88 @@
         }
 
 
-                        //console.log(addTogether(2)([3]));                  //number undefined  
+        //console.log(addTogether(2)([3]));                  //number undefined  
         //console.log(addTogether(2)(3));                   //number undefined
-                        //console.log(addTogether(2, "3"));                    //number string
-                        //console.log(addTogether("http://bit.ly/IqT6zt"));      //string undefined
+        //console.log(addTogether(2, "3"));                    //number string
+        //console.log(addTogether("http://bit.ly/IqT6zt"));      //string undefined
 
-                        //console.log(addTogether(2, 3));
+        //console.log(addTogether(2, 3));
 
 
         /*
         var funcCurry = addTogether(2)
         console.log(funcCurry(3));
 */
+
+
+
+
+
+
+
+        var Person = function (firstAndLast) {
+
+            let _name = firstAndLast.split(' ');
+
+
+            this.getFullName = function () {
+                return _name.join(' ');
+            };
+
+            this.getFirstName = function () {
+                return _name[0]
+            }
+
+            this.getLastName = function () {
+                return _name[1]
+            }
+
+            this.setFirstName = function (name) {
+                _name.shift();
+                _name.unshift(name);
+            }
+
+            this.setLastName = function (name) {
+                _name.pop();
+                _name.push(name);
+            }
+
+            this.setFullName = function (name) {
+                _name.pop(); _name.shift();
+
+                _name = name.split(' ');
+                console.log(_name);
+            }
+            // return firstAndLast;
+        };
+
+
+        var bob = new Person('Bob Ross');
+
+        //bob.setFirstName("Haskell");
+        // bob.setFullName("Haskell Curry");
+        //console.log(bob.getFirstName());
+        //console.log(bob.getFullName());
+        //console.log(bob.getLastName());
+        // console.log(bob.getFirstName());
+        // console.log(bob.firstName);
+        // console.log(bob.lastName);
+        //console.log(Object.keys(bob).length);
+        //console.log(bob instanceof Person);
+
+
+
+
+        function orbitalPeriod(arr) {
+            var GM = 398600.4418;
+            var earthRadius = 6367.4447;
+            return arr;
+        }
+
+        orbitalPeriod([{ name: "sputnik", avgAlt: 35873.5553 }]);
+
+
+
 
 
 
