@@ -1127,24 +1127,32 @@
         //console.log(Object.keys(bob).length);
         //console.log(bob instanceof Person);
 
-
-
-
         function orbitalPeriod(arr) {
             var GM = 398600.4418;
             var earthRadius = 6367.4447;
             return arr;
         }
-
         orbitalPeriod([{ name: "sputnik", avgAlt: 35873.5553 }]);
 
 
 
 
+        function palindrome(str) {
+        
+            str = [...str.toLowerCase()]
+                .filter(item => item.match(/[a-zA-Z0-9]/, 'gi'))
+            let isSame = true;
+
+            while (str.length > 1) {
+                 if (str.pop() !== str.shift()) return false;
+
+            }
 
 
+            return true;
+        }
 
-
+        palindrome("five|\_/|four") 
 
     </script>
 </body>
