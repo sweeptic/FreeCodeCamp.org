@@ -6,11 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Audiowide&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
+    <!-- <div style="font-family: 'Audiowide', cursive; font-size: 50rem">
+    G
+    </div> -->
     Freecodecamp
 
 
@@ -1138,21 +1142,62 @@
 
 
         function palindrome(str) {
-        
             str = [...str.toLowerCase()]
                 .filter(item => item.match(/[a-zA-Z0-9]/, 'gi'))
             let isSame = true;
 
             while (str.length > 1) {
-                 if (str.pop() !== str.shift()) return false;
-
+                if (str.pop() !== str.shift()) return false;
             }
-
-
             return true;
         }
+        palindrome("five|\_/|four")
 
-        palindrome("five|\_/|four") 
+
+
+
+        function convertToRoman(num) {
+
+            let res = "";
+
+            let decimalNumbers = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
+            let romanNumbers = [
+                "M",
+                "CM",
+                "D",
+                "CD",
+                "C",
+                "XC",
+                "L",
+                "XL",
+                "X",
+                "IX",
+                "V",
+                "IV",
+                "I"
+            ];
+
+            for(let index = 0; index <= decimalNumbers.length; index++){
+
+                while(decimalNumbers[index] <= num) {
+                    res = res + romanNumbers[index];
+                    num -= decimalNumbers[index];
+                }
+            }
+
+            //console.log(res);
+
+
+            return res;
+        }
+console.log(
+        convertToRoman(20)
+);
+
+
+
+
+
 
     </script>
 </body>
