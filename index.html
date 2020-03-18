@@ -1177,9 +1177,9 @@
                 "I"
             ];
 
-            for(let index = 0; index <= decimalNumbers.length; index++){
+            for (let index = 0; index <= decimalNumbers.length; index++) {
 
-                while(decimalNumbers[index] <= num) {
+                while (decimalNumbers[index] <= num) {
                     res = res + romanNumbers[index];
                     num -= decimalNumbers[index];
                 }
@@ -1190,9 +1190,38 @@
 
             return res;
         }
-console.log(
+        // console.log(
         convertToRoman(20)
-);
+        // );
+
+
+
+        function rot13(str) {
+
+            const leftToRight = new RegExp(/[A-M]/,'gi');
+            const rightToLeft = new RegExp(/[N-Z]/,'gi');
+            const letter = new RegExp(/[A-Z]/,'gi');
+
+            console.log([...str]);
+
+            let decoded = 
+                [...str].map((item) => {
+                    if(item.match(leftToRight))
+                    return  String.fromCharCode(  item.charCodeAt() + 13);
+                    else if (item.match(rightToLeft))
+                    return String.fromCharCode( item.charCodeAt() - 13);
+                    return item;
+                }).join('');
+
+                console.log(decoded)
+
+
+            return str;
+        }
+
+        rot13("SERR YBIR?");
+
+
 
 
 
