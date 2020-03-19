@@ -1198,28 +1198,58 @@
 
         function rot13(str) {
 
-            const leftToRight = new RegExp(/[A-M]/,'gi');
-            const rightToLeft = new RegExp(/[N-Z]/,'gi');
-            const letter = new RegExp(/[A-Z]/,'gi');
+            const leftToRight = new RegExp(/[A-M]/, 'gi');
+            const rightToLeft = new RegExp(/[N-Z]/, 'gi');
+            const letter = new RegExp(/[A-Z]/, 'gi');
 
             console.log([...str]);
 
-            let decoded = 
+            let decoded =
                 [...str].map((item) => {
-                    if(item.match(leftToRight))
-                    return  String.fromCharCode(  item.charCodeAt() + 13);
+                    if (item.match(leftToRight))
+                        return String.fromCharCode(item.charCodeAt() + 13);
                     else if (item.match(rightToLeft))
-                    return String.fromCharCode( item.charCodeAt() - 13);
+                        return String.fromCharCode(item.charCodeAt() - 13);
                     return item;
                 }).join('');
 
-                console.log(decoded)
+            // console.log(decoded)
 
 
             return str;
         }
 
-        rot13("SERR YBIR?");
+        // rot13("SERR YBIR?");
+
+
+
+
+        function telephoneCheck(str) {
+
+            var re = /^([+]?1[\s]?)?((?:[(](?:[2-9]1[02-9]|[2-9][02-8][0-9])[)][\s]?)|(?:(?:[2-9]1[02-9]|[2-9][02-8][0-9])[\s.-]?)){1}([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2}[\s.-]?){1}([0-9]{4}){1}$/;
+           
+
+            console.log(re.test(str));
+
+
+            return true;
+        }
+
+
+
+        telephoneCheck('5555555555');
+
+
+
+
+        /*
+        555-555-5555
+        (555)555-5555
+        (555) 555-5555
+        555 555 5555
+        5555555555
+        1 555 555 5555
+        */
 
 
 
