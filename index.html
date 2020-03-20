@@ -1227,21 +1227,15 @@
         function telephoneCheck(str) {
 
             var re = /^([+]?1[\s]?)?((?:[(](?:[2-9]1[02-9]|[2-9][02-8][0-9])[)][\s]?)|(?:(?:[2-9]1[02-9]|[2-9][02-8][0-9])[\s.-]?)){1}([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2}[\s.-]?){1}([0-9]{4}){1}$/;
-           
-
-            console.log(re.test(str));
 
 
-            return true;
+            // console.log(re.test(str));
+
+
+            // return true;
         }
 
-
-
         telephoneCheck('5555555555');
-
-
-
-
         /*
         555-555-5555
         (555)555-5555
@@ -1253,6 +1247,58 @@
 
 
 
+
+
+        function checkCashRegister(price, cash, cid) {
+
+            let original = JSON.parse(JSON.stringify(cid));
+            let notes = [
+                ["PENNY", 0.01],        //0.01
+                ["NICKEL", 0.05],       //0.05
+                ["DIME", 0.1],          //0.1
+                ["QUARTER", 0.25],      //0.25
+                ["ONE", 1],            //1
+                ["FIVE", 5],           //5
+                ["TEN", 10],            //10
+                ["TWENTY", 20],         //20
+                ["ONE HUNDRED", 100]    //100]
+            ]
+
+            let back = cash - price;
+            let ret = cid.reduceRight((acc, item, index, arr) => {
+
+                if (back / notes[index][1] > 1) {
+                    let x = 0;
+                    while (back > 0 && item[1] > 0 && (back - notes[index][1] >= 0)) {
+                        back = (back - notes[index][1]).toFixed(2);
+                        item[1] = Number((item[1] - notes[index][1]).toFixed(2));
+                        //  console.log(item[1]);
+                        // console.warn(back);
+                        x++;
+                    }
+                    acc.push([item[0], x * notes[index][1]]);
+                }
+
+                return acc;
+            }, [])
+
+            let prefix = "OPEN";
+            let change = [];
+            let isLeft = Number(back) !== 0;
+            let isCashEmpty = (cid.every(item => item[1] === 0));
+
+
+            if (isCashEmpty && !isLeft) { prefix = 'CLOSE'; change = original }
+            else if (isLeft) prefix = 'INSUFFICIENT_FUNDS';
+            else { change = ret }
+
+             console.log({ status: prefix, change });
+
+            return ({ status: prefix, change });
+        }
+
+
+        checkCashRegister(19.5, 20, [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]])
 
 
 
